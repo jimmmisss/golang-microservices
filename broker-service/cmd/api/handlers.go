@@ -29,7 +29,7 @@ func (app *Config) Broker(w http.ResponseWriter, r *http.Request) {
 func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 	var requestPayload RequestPayload
 
-	err := app.readJSON(w, r, requestPayload)
+	err := app.readJSON(w, r, &requestPayload)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
@@ -37,13 +37,13 @@ func (app *Config) HandleSubmission(w http.ResponseWriter, r *http.Request) {
 
 	switch requestPayload.Action {
 	case "auth":
-		app.autenticate(w, requestPayload.Auth)
+		app.authenticate(w, requestPayload.Auth)
 	default:
 		app.errorJSON(w, errors.New("unknown action"))
 	}
 }
 
-func (app *Config) autenticate(w http.ResponseWriter, a AuthPayload) {
+func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 	// create  some we'll send to auth microservice
 	jsonData, _ := json.MarshalIndent(a, "", "\t")
 
