@@ -79,13 +79,14 @@
 
             fetch("http:\/\/localhost:8080/handle", body)
                 .then((response) => response.json())
-                .then((data) => {
+                .then(data => {
                     sent.innerHTML = JSON.stringify(payload, undefined, 4)
                     received.innerHTML = JSON.stringify(data, undefined, 4)
                     if (data.error) {
-                        output.innerHTML += `<br><strong>Error:</strong>: ${data.message}`
+                        output.innerHTML += `<br><strong>Error:</strong> ${data.message}`;
                     } else {
-                        output.innerHTML += `<br><strong>Response from broker service</strong>: ${data.message}`
+                        output.innerHTML += `<br><strong>Response from broker service:</strong>: ${data.message}`;
+                        output.innerHTML += `<br> Authenticated user ${data.data.firt_name}`;
                     }
                 }).catch((error) => {
                 output.innerHTML += "<br><br>Error: " + error
