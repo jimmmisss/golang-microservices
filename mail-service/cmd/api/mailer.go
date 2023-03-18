@@ -18,6 +18,7 @@ type Mail struct {
 	FromAddress string
 	FromName    string
 }
+
 type Message struct {
 	From        string
 	FromName    string
@@ -43,7 +44,7 @@ func (m *Mail) SendSMTPMessage(msg Message) error {
 
 	msg.DataMap = data
 
-	formatedMessage, err := m.buildHTMLMessage(msg)
+	formattedMessage, err := m.buildHTMLMessage(msg)
 	if err != nil {
 		return err
 	}
@@ -71,7 +72,7 @@ func (m *Mail) SendSMTPMessage(msg Message) error {
 	email := mail.NewMSG()
 	email.SetFrom(msg.From).AddTo(msg.To).SetSubject(msg.Subject)
 	email.SetBody(mail.TextPlain, plainMessage)
-	email.AddAlternative(mail.TextHTML, formatedMessage)
+	email.AddAlternative(mail.TextHTML, formattedMessage)
 
 	if len(msg.Attachments) > 0 {
 		for _, x := range msg.Attachments {
