@@ -1,4 +1,5 @@
 .idea/
 *.iml
 *.exe
-./project/db-data/
+/project/db-data/
+/project/db-data/*

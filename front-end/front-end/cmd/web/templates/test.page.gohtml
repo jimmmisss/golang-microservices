@@ -124,7 +124,7 @@
                         output.innerHTML += `<br><strong>Error:</strong> ${data.message}`;
                     } else {
                         output.innerHTML += `<br><strong>Response from broker service:</strong>: ${data.message}`;
-                        output.innerHTML += `<br> Authenticated user ${data.data.firt_name}`;
+                        output.innerHTML += `<br> Authenticated user ${data.data.first_name}`;
                     }
                 }).catch((error) => {
                 output.innerHTML += "<br><br>Error: " + error
@@ -160,7 +160,7 @@
                         output.innerHTML += `<br><strong>Error:</strong> ${data.message}`;
                     } else {
                         output.innerHTML += `<br><strong>Response from broker service:</strong>: ${data.message}`;
-                        output.innerHTML += `<br> Authenticated user ${data.data.firt_name}`;
+                        output.innerHTML += `<br> Authenticated user ${data.data.first_name}`;
                     }
                 }).catch((error) => {
                 output.innerHTML += "<br><br>Error: " + error

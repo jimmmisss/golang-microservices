@@ -68,7 +68,7 @@ func (consumer *Consumer) Listen(topics []string) error {
 	}
 
 	messages, err := ch.Consume(
-		q.Name, "",
+		q.Name, q.Name,
 		true,
 		false,
 		false,
@@ -98,6 +98,11 @@ func handlePayload(payload Payload) {
 	switch payload.Name {
 	case "auth", "authentication":
 		err := authenticate(payload)
+		if err != nil {
+			log.Println(err)
+		}
+	case "event":
+		err := logEvent(payload)
 		if err != nil {
 			log.Println(err)
 		}
